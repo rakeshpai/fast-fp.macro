@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/rakeshpai/fast-fp.macro.git"
   },
-  "main": "src/index.macro.js",
+  "main": "src/fast-fp.macro.js",
   "scripts": {
     "lint": "eslint --fix --cache .",
     "test": "jest"
