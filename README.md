@@ -8,7 +8,7 @@ Zero overhead functional programming library for projects using [`babel-plugin-m
 
 `fast-fp.macro` compiles itself out of your bundles!
 
-**Warning**: Alpha release! Please play with it, and give feedback!
+**Warning**: Beta release! Please play with it, and give feedback!
 
 ## Installation
 
@@ -25,7 +25,7 @@ and add the following to your babel config:
 
 Finally, install this module:
 ```
-npm install --save-dev fast-fp.macro@alpha
+npm install --save-dev fast-fp.macro@beta
 ```
 
 ## Usage
