@@ -13,7 +13,11 @@ Zero overhead functional programming library for projects using [`babel-plugin-m
 
 `fast-fp.macro` compiles itself out of your bundles!
 
-**Why is this better than using any other library?** When using a typical library such as ramda or lodash (both great libraries, btw), you need to, well, ship the library as part of your bundle. Also, many functions like `pipe` and `compose` are implemented internally in these libraries by looping over the supplied arguments, further increasing runtime overhead. This doesn't matter too much if you're using very few functions here and there, but if you have a lot of composed functions the overhead quickly adds up. `fast-fp.macro` avoids both these issues by doing all the work at build-time.
+**Why is this better than using any other library?**
+
+When using a typical library such as ramda or lodash (both great libraries, btw), you need to, well, ship the library as part of your bundle. Also, many functions like `pipe` and `compose` are implemented internally in these libraries by looping over the supplied arguments, further increasing runtime overhead. This doesn't matter too much if you're using very few functions here and there, but if you have a lot of composed functions the overhead quickly adds up. 
+
+`fast-fp.macro` avoids both these issues: There's no library code shipped to the client, and all the loops are pre-evaluated at build-time so that there's no runtime overhead.
 
 **Warning**: Beta release! Please play with it, and give feedback!
 
@@ -23,7 +27,7 @@ Zero overhead functional programming library for projects using [`babel-plugin-m
 npm install --save-dev fast-fp.macro@beta
 ```
 
-You'll also have to ensure that your project already has [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros) in it. If you are using [create-react-app](https://github.com/facebook/create-react-app) or [gatsby](https://www.gatsbyjs.org/), you already have `babel-plugin-macros`. If not, do the following:
+You'll also have to ensure that your project already has [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros) configured. If you are using [create-react-app](https://github.com/facebook/create-react-app) or [gatsby](https://www.gatsbyjs.org/), you already have `babel-plugin-macros`. If not, do the following:
 ```
 npm install --save-dev babel-plugin-macros
 ```
@@ -42,9 +46,18 @@ and add the following to your babel config:
 * [`compose`](#compose)
 * [`pipe`](#pipe)
 
-Depending on interest, more FP functions will be added. Please open an issue to let me know what you'd like! Ideally, I'll use [ramda's API](https://ramdajs.com/docs) as reference, but we could deviate as needed.
+These functions are heavily inspired by the equivalent functions in [ramda](https://ramdajs.com/).
+
+Depending on interest, more FP functions will be added. Please open an issue to let me know what you'd like!
 
 ### `allPass`
+
+[Ramda](https://ramdajs.com/docs/#allPass)
+
+Takes a list of predicates and returns a predicate that returns true for a given list of arguments if every one of the provided predicates is satisfied by those arguments.
+
+Difference from ramda: The list of predicates is taken as a list of arguments, not as an array.
+
 ```js
 import { allPass } from 'fast-fp.macro';
 
@@ -68,8 +81,11 @@ isQueenOfSpades({ rank: 'Q', suit: '♠︎' }); // true
 isQueenOfSpades({ rank: 'K', suit: '♠︎' }); // false
 ```
 
-
 ### `compose`
+
+[Ramda](https://ramdajs.com/docs/#compose)
+
+Performs right-to-left function composition. The rightmost function may have any arity; the remaining functions must be unary.
 
 ```js
 import { compose } from 'fast-fp.macro';
@@ -94,9 +110,11 @@ composed('foo'); // 'F'
 composed('hello'); // 'H"
 ```
 
-Note: No import! No additional library code!
-
 ### `pipe`
+
+[Ramda](https://ramdajs.com/docs/#pipe)
+
+Performs left-to-right function composition. The leftmost function may have any arity; the remaining functions must be unary.
 
 ```js
 import { pipe } from 'fast-fp.macro';
@@ -120,8 +138,6 @@ const piped = (...args) => toUpper(first(...args));
 piped('foo'); // 'F'
 piped('hello'); // 'H"
 ```
-
-Note: No import! No additional library code!
 
 ## License
 MIT
