@@ -4,7 +4,7 @@ createTests('compose', [
   {
     title: 'works with named functions',
     code: `
-      import { compose } from '../src/index.macro';
+      import { compose } from '../src/fast-fp.macro';
       const composed = compose(toUpper, firstChar);
     `,
     output: `
@@ -14,7 +14,7 @@ createTests('compose', [
   {
     title: 'works with inline arrow functions',
     code: `
-      import { compose } from '../src/index.macro';
+      import { compose } from '../src/fast-fp.macro';
       const composed = compose(str => str.toUpperCase(), firstChar);
     `,
     output: `
@@ -24,7 +24,7 @@ createTests('compose', [
   {
     title: 'works with inline es5 functions',
     code: `
-      import { compose } from '../src/index.macro';
+      import { compose } from '../src/fast-fp.macro';
       const composed = compose(
         function (str) { return str.toUpperCase(); },
         firstChar
@@ -39,7 +39,7 @@ createTests('compose', [
   {
     title: 'works with higher-order functions',
     code: `
-      import { compose } from '../src/index.macro';
+      import { compose } from '../src/fast-fp.macro';
       const composed = compose(toUpper, charAtIndex(0));
     `,
     output: `

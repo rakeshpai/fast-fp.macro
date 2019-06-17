@@ -4,7 +4,7 @@ createTests('pipe', [
   {
     title: 'works with named functions',
     code: `
-      import { pipe } from '../src/index.macro';
+      import { pipe } from '../src/fast-fp.macro';
       const piped = pipe(toUpper, firstChar);
     `,
     output: `
@@ -14,7 +14,7 @@ createTests('pipe', [
   {
     title: 'works with inline arrow functions',
     code: `
-      import { pipe } from '../src/index.macro';
+      import { pipe } from '../src/fast-fp.macro';
       const piped = pipe(str => str.toUpperCase(), firstChar);
     `,
     output: `
@@ -24,7 +24,7 @@ createTests('pipe', [
   {
     title: 'works with inline es5 functions',
     code: `
-      import { pipe } from '../src/index.macro';
+      import { pipe } from '../src/fast-fp.macro';
       const piped = pipe(function (str) { return str.toUpperCase(); }, firstChar);
     `,
     output: `
@@ -36,7 +36,7 @@ createTests('pipe', [
   {
     title: 'works with higher-order functions',
     code: `
-      import { pipe } from '../src/index.macro';
+      import { pipe } from '../src/fast-fp.macro';
       const piped = pipe(toUpper, charAtIndex(0));
     `,
     output: `
