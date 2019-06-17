@@ -64,6 +64,8 @@ composed('hello'); // 'H"
 
 Note: No import! No additional library code!
 
+**Why is this better than using any other library?** When using a typical library such as ramda or lodash (both great libraries, btw), you need to, well, ship the library as part of your bundle. Also, `pipe` and `compose` are implemented internally in these libraries by iterating over the list of functions. So, every call to a composed function has a hidden loop in it, further increasing runtime overhead. This doesn't matter too much if you're using very few functions here and there, but if you have a lot of composed functions the overhead quickly adds up. `fast-fp.macro` avoids both these issues by doing all the work at build-time.
+
 ### `pipe`
 
 ```js
