@@ -4,7 +4,7 @@ createTests('allPass', [
   {
     title: 'works with named functions',
     code: `
-      import { allPass } from '../src/fast-fp.macro';
+      import { allPass } from '../fast-fp.macro';
       const pred = allPass(isQueen, isSpade);
     `,
     output: `
@@ -14,7 +14,7 @@ createTests('allPass', [
   {
     title: 'works with inline arrow functions',
     code: `
-      import { allPass } from '../src/fast-fp.macro';
+      import { allPass } from '../fast-fp.macro';
       const pred = allPass(str => str.includes('foo'), someFn);
     `,
     output: `
@@ -24,7 +24,7 @@ createTests('allPass', [
   {
     title: 'works with inline es5 functions',
     code: `
-      import { allPass } from '../src/fast-fp.macro';
+      import { allPass } from '../fast-fp.macro';
       const pred = allPass(
         function (str) { return str.includes('foo'); },
         someFn
@@ -39,7 +39,7 @@ createTests('allPass', [
   {
     title: 'works with higher-order functions',
     code: `
-      import { allPass } from '../src/fast-fp.macro';
+      import { allPass } from '../fast-fp.macro';
       const pred = allPass(someFn, someFn('arg'));
     `,
     output: `
