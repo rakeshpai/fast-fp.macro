@@ -1,6 +1,6 @@
 # fast-fp.macro
 
-Zero runtime overhead functional programming library for projects using [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros).
+Zero overhead functional programming library for projects using [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros).
 
 * Zero runtime overhead - no hidden loops!
 * Zero dependencies - no libraries after compilation!
