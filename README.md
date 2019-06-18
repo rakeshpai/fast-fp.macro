@@ -22,7 +22,7 @@ When using a typical library such as ramda or lodash (both great libraries, btw)
 ## Installation
 
 ```
-npm install --save-dev fast-fp.macro@beta
+npm install --save-dev fast-fp.macro
 ```
 
 You'll also have to ensure that your project already has [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros) configured. If you are using [create-react-app](https://github.com/facebook/create-react-app) or [gatsby](https://www.gatsbyjs.org/), you already have `babel-plugin-macros`. If not, do the following:
@@ -41,6 +41,7 @@ and add the following to your babel config:
 `fast-fp.macro` exports the following functions:
 
 * [`allPass`](#allPass)
+* [`anyPass`](#anyPass)
 * [`compose`](#compose)
 * [`pipe`](#pipe)
 
