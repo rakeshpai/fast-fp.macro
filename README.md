@@ -19,8 +19,6 @@ When using a typical library such as ramda or lodash (both great libraries, btw)
 
 `fast-fp.macro` avoids both these issues: There's no library code shipped to the client, and all the loops are pre-evaluated at build-time so that there's no runtime overhead.
 
-**Warning**: Beta release! Please play with it, and give feedback!
-
 ## Installation
 
 ```
