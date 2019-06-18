@@ -4,7 +4,7 @@ const createFunction = t => fn =>
     [t.spreadElement(t.identifier('args'))]
   );
 
-module.exports = ({ references, babel: { types: t } }) => {
+const createHandler = operator => ({ references, babel: { types: t } }) => {
   const toFunction = createFunction(t);
 
   references.forEach(({ parentPath }) => {
@@ -14,13 +14,14 @@ module.exports = ({ references, babel: { types: t } }) => {
       t.arrowFunctionExpression(
         [t.restElement(t.identifier('args'))],
         restArgs.reduce((folded, fn) => {
-          return t.logicalExpression(
-            '&&',
-            folded,
-            toFunction(fn)
-          );
+          return t.logicalExpression(operator, folded, toFunction(fn));
         }, toFunction(firstArg))
       )
     );
   });
+};
+
+module.exports = {
+  allPass: createHandler('&&'),
+  anyPass: createHandler('||')
 };

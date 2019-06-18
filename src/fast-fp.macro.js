@@ -1,10 +1,10 @@
 const { createMacro } = require('babel-plugin-macros');
-const allPass = require('./fns/all-pass');
+const { allPass, anyPass } = require('./fns/all-any-pass');
 const pipe = require('./fns/pipe');
 const compose = require('./fns/compose');
 
 const methods = {
-  allPass, compose, pipe
+  allPass, anyPass, compose, pipe
 };
 
 module.exports = createMacro(({ references, state, babel }) => {

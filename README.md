@@ -71,14 +71,43 @@ isQueenOfSpades({ rank: 'K', suit: '♠︎' }); // false
 
 The code above gets compiled to:
 ```js
-import { allPass } from 'fast-fp.macro';
-
 const isQueen = ({ rank }) => rank === 'Q';
 const isSpade = ({ suit }) => suit === '♠︎';
 const isQueenOfSpades = (...args) => isQueen(...args) && isSpade(...args);
 
 isQueenOfSpades({ rank: 'Q', suit: '♠︎' }); // true
 isQueenOfSpades({ rank: 'K', suit: '♠︎' }); // false
+```
+
+### `anyPass`
+
+[Ramda](https://ramdajs.com/docs/#allPass)
+
+Takes a list of predicates and returns a predicate that returns true for a given list of arguments if at least one of the provided predicates is satisfied by those arguments.
+
+Difference from ramda: The list of predicates is taken as a list of arguments, not as an array.
+
+```js
+import { anyPass } from 'fast-fp.macro';
+
+const isClub = ({ suit }) => suit === '♣';
+const isSpade = ({ suit }) => suit === '♠';
+const isBlackCard = anyPass(isClub, isSpade);
+
+isBlackCard({ rank: '10', suit: '♣' }); // true
+isBlackCard({ rank: 'Q', suit: '♠' }); // true
+isBlackCard({ rank: 'Q', suit: '♦' }); // false
+```
+
+The code above gets compiled to:
+```js
+const isClub = ({ suit }) => suit === '♣';
+const isSpade = ({ suit }) => suit === '♠';
+const isBlackCard = (...args) => isClub(...args) || isSpade(...args);
+
+isBlackCard({ rank: '10', suit: '♣' }); // true
+isBlackCard({ rank: 'Q', suit: '♠' }); // true
+isBlackCard({ rank: 'Q', suit: '♦' }); // false
 ```
 
 ### `compose`
